@@ -168,7 +168,7 @@ system("cls");
 			}
 
 			if(!usrfound){
-				printf("\n\n User us not registerd ");
+				printf("\n\n User is not registerd ");
 				Beep(523,800);
 			}
         fclose(fp);

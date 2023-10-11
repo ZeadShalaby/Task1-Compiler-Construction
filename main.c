@@ -35,13 +35,13 @@ char generateUsername(char email[50] , char username[50]){
 }
 
 // take the inputpassword from users and hashing it **** //
-void takePassword(char pwd[50]){
+void takePassword(char pass[50]){
 	int i;
 	char ch;
 	while(1){
 		ch = getch();
 		if(ch == ENTER || ch == TAB){
-			pwd[i] = '\0';
+			pass[i] = '\0';
 			break;
 		}else if(ch == BCKSPC){
 			if(i>0){
@@ -49,7 +49,7 @@ void takePassword(char pwd[50]){
 				printf("\b \b");
 			}
 		}else{
-			pwd[i++] = ch ;
+			pass[i++] = ch ;
 			printf("* \b");
 		}
 
@@ -60,11 +60,11 @@ void takePassword(char pwd[50]){
 int main() {
     system("color 0D");
 
-	FILE *fp;
-	int opts , usrfound=0;
+	FILE *ze;
+	int opts , userfound=0;
 	struct users user;
 
-	char username[50] , pword[50];
+	char username[50] , pass[50];
 	struct users usr;
 
 
@@ -112,8 +112,8 @@ int main() {
 		    if(!strcmp(user.password , user.confirmpass)){
 		    	printf("\nYour password matched");
 		    	generateUsername(user.email , user.username);
-		    	fp = fopen("SystemUsers.dat","a+");
-		    	fwrite(&user,sizeof(struct users),1,fp);
+		    	ze = fopen("SystemUsers.dat","a+");
+		    	fwrite(&user,sizeof(struct users),1,ze);
 		    	if(fwrite != 0){
                     printf("\n\n User Register success, \n your name is %s ",user.username);
 				}else{
@@ -121,7 +121,7 @@ int main() {
 				}
 
 			}else{
-				printf("\nPassword donot matched");
+				printf("\n Errors Password Try Again :(");
                 Beep(523,800);//window h
 			}
 		break;
@@ -139,12 +139,12 @@ system("cls");
             takeinput(username);
 
 		    printf("Enter Your Password : \t");
-		    takePassword(pword);
+		    takePassword(pass);
 
-		    fp = fopen("SystemUsers.dat" , "r");
-		    while(fread(&usr ,sizeof(struct users),1,fp)){
+		    ze = fopen("SystemUsers.dat" , "r");
+		    while(fread(&usr ,sizeof(struct users),1,ze)){
 		    	if(!strcmp(usr.username , username)){
-		    		if(!strcmp(usr.password , pword)){
+		    		if(!strcmp(usr.password , pass)){
 
                         system("cls");
                         printf("\t\t\t\t\t------------------------------------------\t\t\t\t");
@@ -163,15 +163,15 @@ system("cls");
 						printf("\n Invalid Password !");
                         Beep(523,800);
 					}
-					usrfound = 1 ;
+					userfound = 1 ;
 				}
 			}
 
-			if(!usrfound){
+			if(!userfound){
 				printf("\n\n User is not registerd ");
 				Beep(523,800);
 			}
-        fclose(fp);
+        fclose(ze);
 	    break;
 
 

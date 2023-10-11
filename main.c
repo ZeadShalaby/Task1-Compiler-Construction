@@ -16,8 +16,7 @@ char username[50];
 char phone[50];
 char sex[50];
 char confirmpass[50];
-char logservice[50];
-char passlog[50];
+
 
 
 };
@@ -70,6 +69,9 @@ int main()
 	FILE *ze;
     int opts,userfound = 0;
     struct users users;
+    char logservice[50];
+    char passlog[50];
+    struct users usr;
 
     printf("\t\t\t\t\t------------------------------------------\t\t\t\t");
     printf("\t\t\t\t\t\t\t------------------------------------------\t\t\t\t");
@@ -127,14 +129,13 @@ int main()
         printf("\t\t\t\t\t\t\t------------------------------------------\t\t\t\t\n");
 
         printf("\nEnter your username :\t");
-        takeinputs(users.logservice);
+        takeinputs(logservice);
         printf("Enter your password :\t");
-        takepassword(users.passlog);
+        takepassword(passlog);
         ze = fopen("SystemUsers.dat","r");
-        while(fread(&users,sizeof(struct users),1,ze)){
-
-            if(!strcmp(users.username,users.logservice)){
-                    if(!strcmp(users.password,users.passlog)){
+        while(fread(&usr ,sizeof(struct users),1,ze)){
+            if(!strcmp(usr.username,logservice)){
+                    if(!strcmp(usr.password,passlog)){
                     system("cls");
                     printf("\t\t\t\t\t------------------------------------------\t\t\t\t");
                     printf("\t\t\t\t\t\t\t------------------------------------------\t\t\t\t");

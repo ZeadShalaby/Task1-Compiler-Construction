@@ -131,7 +131,7 @@ int main()
         printf("Enter your password :\t");
         takepassword(users.passlog);
         ze = fopen("SystemUsers.dat","r");
-        fread(&users,sizeof(struct users),1,ze);
+        while(fread(&users,sizeof(struct users),1,ze)){
 
             if(!strcmp(users.username,users.logservice)){
                     if(!strcmp(users.password,users.passlog)){
@@ -153,8 +153,7 @@ int main()
       }
        userfound = 1;
 
-    }
-
+    }}
     if(!userfound){
 				printf("\n\nUser is not registered!");
 				Beep(523,800);
